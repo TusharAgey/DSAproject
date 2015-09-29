@@ -1,0 +1,4 @@
+1)exit		     :- This command exits the application
+2)manage my contacts :- This command opens a portal 
+			for managing your contacts.
+3)help		     :- Provides help
