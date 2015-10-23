@@ -12,10 +12,15 @@ void printmenu() {
 }
 int main() {
 	user u;
+<<<<<<< HEAD
 	//execvp("clear");
 //	execvp("./projcet");
 	printf("\n \t\tTECHNA\n");
 	printf("\n **********************************************************\n");
+=======
+	printf("\n \t\tTECHNA\n");
+	printf("\n *****************************************\n");
+>>>>>>> bb0a8c67ac80de4a2eb65228d5c06121d65b01fd
 	printf("T> Welcome to the world of TECHNA\n");
 	if(isFirstTime(&u)) {
 		printf("T> Wow, first time visit, let me introduce myself, I am a chatbot, having name\n\t\t\t TECHNA.\n And I came in exsistance on 13th September 2015\n"); 

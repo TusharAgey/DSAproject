@@ -22,4 +22,7 @@ void reverse(list *l);*/
 void viewContact(char *name, list *l);
 void showAll(list *l);
 void update(list *l, char *phone);
+<<<<<<< HEAD
 
+=======
+>>>>>>> bb0a8c67ac80de4a2eb65228d5c06121d65b01fd

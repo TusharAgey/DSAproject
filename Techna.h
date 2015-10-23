@@ -20,6 +20,11 @@ int login();//makes the login logic.returns 1 for successfull login.
 void closeME(user u);//ends the program & greets accordingly
 void startRoutine(user u);//most imp function
 char *cmdLowerCase(char *s);
+<<<<<<< HEAD
 void contactManaging(user u);//manages contact
 int chkBirthday(user u,int day,int month); //returns 1 is its birthday, else 0
 void moneyManaging(user u);
+=======
+void contactManaging(user u);
+int chkBirthday(user u,int day,int month); //returns 1 is its birthday, else 0
+>>>>>>> bb0a8c67ac80de4a2eb65228d5c06121d65b01fd

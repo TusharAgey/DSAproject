@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+				README
+
+>>>>>>> bb0a8c67ac80de4a2eb65228d5c06121d65b01fd
 1)This is a project called TECHNA (Technically Enhanced Cool Heuristic Newly defined Assistant).
 2)just do make -f MakeFile, and all needed things will b automatically done.
   and, just do ./project

@@ -6,7 +6,10 @@
 #include<time.h>
 #include "Techna.h"
 #include "list.h"
+<<<<<<< HEAD
 #include "list2.h"
+=======
+>>>>>>> bb0a8c67ac80de4a2eb65228d5c06121d65b01fd
 static int hellcnt = 0;
 int isFirstTime(user *u) {
 	FILE *fp;
@@ -90,6 +93,7 @@ retvals:
 
 }
 void writeinfo(user *u) {
+<<<<<<< HEAD
 	char tmp1[11], tmp2[11], *gder;
 	gder = (char *)malloc(sizeof(char) * 7);
 	printf("T> What is ur name?\nU> ");
@@ -98,6 +102,13 @@ void writeinfo(user *u) {
 	scanf("%s", gder);
 	gder = cmdLowerCase(gder);
 	strcpy(u->gender, gder);
+=======
+	char tmp1[11], tmp2[11];
+	printf("T> What is ur name?\nU> ");
+	scanf("%s", u->name);
+	printf("T> Nice Name, and Gender?\nU> ");
+	scanf("%s", u->gender);
+>>>>>>> bb0a8c67ac80de4a2eb65228d5c06121d65b01fd
 	if(strcmp(u->gender, "male") == 0) {
 		printf("T> Ohh hello Mr. %s and Date of Birth please?in format DD:MM:YYYY\nU> ", u->name);	
 	}
@@ -189,6 +200,7 @@ void closeMe(user u) {
 }
 void toomuchwait() {
 }
+<<<<<<< HEAD
 int toInt(char arr[]) {
 	int len = strlen(arr);
 	int val = 0;
@@ -302,6 +314,16 @@ char *analyse(char *cmd, user u) {
 		moneyManaging(u);
 	}
 	else if(strcmp(cmd, "help") == 0 || strcmp(cmd, "yes") == 0 || strcmp(cmd, "yeah") == 0) {
+=======
+char *analyse(char *cmd, user u) {
+	if(strcmp(cmd, "exit") == 0)
+		return cmd;
+	else if(strcmp(cmd, "manage my contacts") == 0) {
+		printf("T> I am opening a portal for contact management...\n");
+		contactManaging(u); 
+	}
+	else if(strcmp(cmd, "help") == 0) {
+>>>>>>> bb0a8c67ac80de4a2eb65228d5c06121d65b01fd
 		FILE *helpfp = fopen("DataBase/help.txt", "r");
 		char readfp;
 		printf("Here's the help:-\n\n");
@@ -338,8 +360,13 @@ void contactManaging(user u) {
 	int choise = 0;
 	printf("T> Hey there, I am here to manage ur contacts\n");
 	
+<<<<<<< HEAD
 	while(choise != 6) {
 		printf("T> choose one of the following:\n  1)Add contact\n  2)view contact\n  3)remove contact\n  4)Update existing contact\n  5)view all contacts\n  6)exit\nU> ");
+=======
+	while(choise != 5) {
+		printf("T> choose one of the following:\n  1)Add contact\n  2)view contact\n  3)remove contact\n  4)Update existing contact\n  5)exit\nU> ");
+>>>>>>> bb0a8c67ac80de4a2eb65228d5c06121d65b01fd
 		scanf("%d", &choise);
 		switch(choise) {
 			case 1:
@@ -376,10 +403,13 @@ void contactManaging(user u) {
 				update(&l, phone);
 				break;
 			case 5:
+<<<<<<< HEAD
 				printf("T> All your contacts:-\n");
 				showAll(&l);
 				break;
 			case 6:
+=======
+>>>>>>> bb0a8c67ac80de4a2eb65228d5c06121d65b01fd
 				printf("T> Thank you for using my service, glad to help you!\n");		
 				storeTotal(&l);
 				hellcnt = 0;
@@ -494,7 +524,11 @@ void startRoutine(user u) {
 		gen = 0;
 	
 	strcpy(cmd, "start");
+<<<<<<< HEAD
 	char chval, answer[100];
+=======
+	char chval;
+>>>>>>> bb0a8c67ac80de4a2eb65228d5c06121d65b01fd
 	int i;
 	
 	while(strcmp(cmd, "exit") != 0) {
@@ -518,3 +552,7 @@ void startRoutine(user u) {
 	}
 	
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> bb0a8c67ac80de4a2eb65228d5c06121d65b01fd
