@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 try: list2.o list.o Techna.o main.o
 	cc *.o -o project
 	clear
@@ -24,6 +23,5 @@ Techna.o: list.c Techna.c
 	cc Techna.c -c
 main.o: main.c list.c Techna.c
 	cc list.c -c
->>>>>>> bb0a8c67ac80de4a2eb65228d5c06121d65b01fd
 	cc Techna.c -c
 	cc main.c -c
