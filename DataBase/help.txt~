@@ -1,0 +1,11 @@
+1) help		     (help)       :- Provides help.
+2) manage my contacts (mmcontacts) :- This command opens a portal 
+				     for managing your contacts.
+3) manage my money    (mmm)	  :- this command opens a portal for manaing 					     your money.
+4) exit		     (exit)	  :- This command exits the application.
+=======
+1)exit		     :- This command exits the application
+2)manage my contacts :- This command opens a portal 
+			for managing your contacts.
+3)help		     :- Provides help
+>>>>>>> bb0a8c67ac80de4a2eb65228d5c06121d65b01fd
