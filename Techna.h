@@ -22,4 +22,6 @@ void startRoutine(user u);//most imp function
 char *cmdLowerCase(char *s);
 void contactManaging(user u);//manages contact
 int chkBirthday(user u,int day,int month); //returns 1 is its birthday, else 0
-void moneyManaging(user u);
+void moneyManaging(user u);//Manages your money
+void writeDiary(user u);
+
