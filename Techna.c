@@ -1,3 +1,21 @@
+
+/*****************************************************************************
+ *   This file is part of TECHNA.
+ *
+ *  TECHNA is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Foobar is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with TECHNA.  If not, see <http://www.gnu.org/licenses/>.
+*****************************************************************************/
+
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -96,7 +114,7 @@ void writeinfo(user *u) {
 	char tmp1[11], tmp2[11], *gder;
 	gder = (char *)malloc(sizeof(char) * 7);
 	printf("T> What is ur name?\nU> ");
-	scanf("%s", u->name);
+	scanf("%[^\n]%*c", u->name);
 	printf("T> Nice Name, and Gender?\nU> ");
 	scanf("%s", gder);
 	gder = cmdLowerCase(gder);
@@ -161,7 +179,7 @@ int login(user u) {
 
 	name=(char *)malloc(sizeof(char)*30);
 	printf("T> Who are you?\nU> ");
-	scanf("%s", name);
+	scanf("%[^\n]%*c", name);
 	if(strcmp(u.name, name) == 0) {
 		printf("T> Enter the secrete code:\nU> ");
 		scanf("%d", &code);
@@ -251,7 +269,7 @@ void moneyManaging(user u) {
 		data1 = NULL;
 		data1 = (data2 *)malloc(sizeof(data2));
 	}
-	fclose(fp);
+//	fclose(fp);
 	char name[100], price[100], quantity[100], date[100];
 	long long acc;
 	int choise = 0;
@@ -260,26 +278,22 @@ void moneyManaging(user u) {
 	while(choise != 5) {
 rchoise:	printf("T> choose one of the following:\n  1)New entry\n  2)view balance\n  3)credit\n  4)view all entries\n  5)exit\nU> ");
 		scanf("%d", &choise);
-		//sprintf(tmpvar, "%d", choise);
-		/*if((choise > 0 && choise < 6) ) {
-			printf("T> Please select correct choise\n");
-			hellcnt = 0;
-			return;
-		}*/
-	
 		switch(choise) {
 			case 1:
 				printf("T> Enter item name:\nU> ");
-				scanf("%s", data1->name);
+				getchar();
+				scanf("%[^\n]%*c", data1->name);
 retake:				printf("T> Enter price:\nU> ");
 				scanf("%s", data1->price);
 				if(isNumber(data1->price)) {
 					printf("T> You have entered the alphabetic price, which i cant understand I guess! ~_~.\n");
 					goto retake;
 				}
+				getchar();
 				printf("T> Enter quantity:\nU> ");
 				scanf("%s", data1->quantity);
 				printf("T> Enter purchase date:\nU> ");
+				getchar();
 				scanf("%s", data1->date);
 				int sp, bal, price, tprice;
 				char conf[10];
@@ -290,7 +304,7 @@ retake:				printf("T> Enter price:\nU> ");
 				l.mdet->spent = l.mdet->spent + price;
 				l.mdet->balance = l.mdet->balance - price;
 				if(l.mdet->balance < 0) {
-					printf("T> Sorry, you cannot make a purchase! you are out of balance:\nU> ");
+					printf("T> Sorry, you cannot make a purchase! you are out of balance:\n");
 					hellcnt = 0;
 					fclose(fp);
 					return;				
@@ -406,9 +420,8 @@ noproblm:
 
 	fclose(fp);
 	printf("T> The diary has been saved!! :)\n");
-	
-	
 	hellcnt = 0;
+	return;
 	
 }
 char *analyse(char *cmd, user u) {
@@ -424,6 +437,7 @@ char *analyse(char *cmd, user u) {
 		printf("T> I am opening a portal for money management...\n");
 		moneyManaging(u);
 		printf("U> ");
+		getchar();
 
 	}
 	else if(strcmp(cmd, "manage my diary") == 0 || strcmp(cmd, "mmd") == 0) {
@@ -544,400 +558,25 @@ char *analyse(char *cmd, user u) {
 		printf("T> Ohh Thats very good!! :-)\nU> ");
 	}
 	else if(contains(cmd, "don") && contains(cmd, "say") && contains(cmd, "sorry")) {
-		printf("T> oh, okay, but I'll try to understand better! ;-)\nU> ");
+		printf("T> oh, okay, but I'll try to understand better! ;-)\nU> ");  
 	}
 	else if(contains(cmd, "welcome") && strlen(cmd) == 7) {
 		printf("T> ;) ;) ;)\nU> ");
 	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
+	else if(contains(cmd, "nope") || contains(cmd, "no")) {
+		printf("T> ohh, then simply type exit now. ~_~\nU> ");
 	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
+	else if(contains(cmd, "good") && contains(cmd, "morning")) {
+		printf("T> Ohh very good morning to you, have a beautiful day.\nU> ");
 	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
+	else if(contains(cmd, "good") && contains(cmd, "afternoon")) {
+		printf("T> Good afternoon.. O_O\nU> ");
 	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
+	else if(contains(cmd, "good") && contains(cmd, "evening")) {
+		printf("T> Good evening, planning something special??.\nU> ");
 	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-		else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
-	}
-	else if(contains(cmd, "hello") && contains(cmd, "not")) {
-		printf("T> Ohh hello sir, how are you?\nU> ");
+	else if(contains(cmd, "good") && contains(cmd, "night")) {
+		printf("T> good night, sweet dreams, take care.. I wanna suggest you something... Write diary....simply type mmd and enter @_@\nU> ");
 	}
 	else {
 		printf("T> I was unable to understand you, sorry\nU> ");
@@ -975,7 +614,7 @@ int contains(char *cmd, char *val) {
 }
 void contactManaging(user u) {
 	if(dash2 == 1) {
-		printf("T> I am counting your balance, It will take whole day, please close me and reopen to finalize counting\n");
+		printf("T> I am sorting your contacts, It will take whole day, please close me and reopen to finalize sorting\n");
 		hellcnt = 0;
 		return;	
 	}
@@ -1009,10 +648,9 @@ void contactManaging(user u) {
 		scanf("%d", &choise);
 		switch(choise) {
 			case 1:
-				//printf("T> Enter the name, phone number and email\nU> ");
-				//scanf("%s%s%s", data1->name, data1->phone, data1->email);
 				printf("T> Enter name:\nU> ");
-				scanf("%s", data1->name);
+				getchar();
+				scanf("%[^\n]%*c", data1->name);
 				printf("T> Enter Phone Number:\nU> ");
 				scanf("%s", data1->phone);
 				printf("T> Enter Email:\nU> ");
@@ -1029,8 +667,7 @@ void contactManaging(user u) {
 				break;
 			case 2:
 				printf("T> Enter the name of person to be searched\nU> ");
-				scanf("%s", name);
-				//showAll(&l);
+				scanf("%[^\n]%*c", name);
 				viewContact(name, &l);
 				break;
 			case 3:
@@ -1153,7 +790,7 @@ char *trim(char *cmd) {
 	int len = strlen(cmd);
 	int i = 0, j = len - 1, k, p = 0, q, r;
 	while(cmd[i] != 'a' && cmd[i] != 'b' && cmd[i] != 'c' && cmd[i] != 'd' && cmd[i] != 'e' && cmd[i] != 'f' && cmd[i] != 'g' && cmd[i] != 'h' && cmd[i] != 'i' && cmd[i] != 'j' && cmd[i] != 'k' && cmd[i] != 'l' && cmd[i] != 'm' && cmd[i] != 'n' && cmd[i] != 'o' && cmd[i] != 'p' && cmd[i] != 'q' && cmd[i] != 'r' && cmd[i] != 's' && cmd[i] != 't' && cmd[i] != 'u' && cmd[i] != 'v' && cmd[i] != 'w' && cmd[i] != 'x' && cmd[i] != 'y' && cmd[i] != 'z' && cmd[i] != 'A' && cmd[i] != 'B' && cmd[i] != 'C' && cmd[i] != 'D' && cmd[i] != 'E' && cmd[i] != 'F' && cmd[i] != 'O' && cmd[i] != 'N' && cmd[i] != 'M' && cmd[i] != 'L' && cmd[i] != 'K' && cmd[i] != 'J' && cmd[i] != 'I' && cmd[i] != 'H' && cmd[i] != 'G' && cmd[i] != 'Q' && cmd[i] != 'P' && cmd[i] != 'R' && cmd[i] != 'S' && cmd[i] != 'T' && cmd[i] != 'U' && cmd[i] != 'V' && cmd[i] != 'W' && cmd[i] != 'X' && cmd[i] != 'Y' && cmd[i] != 'Z' && cmd[i] != '0' && cmd[i] != '1' && cmd[i] != '2' && cmd[i] != '3' && cmd[i] != '4' && cmd[i] != '5' && cmd[i] != '6' && cmd[i] != '7' && cmd[i] != '8' && cmd[i] != '9' ) {
-		if(cmd[i] == ' ') {
+		if((cmd[i] == ' ') || (cmd[i] == '\n')) {
 			while(p < len) {
 				cmd[p] = cmd[p + 1];
 				
@@ -1167,7 +804,7 @@ char *trim(char *cmd) {
 	
 	}	
 	i = strlen(cmd) - 1;
-	while(cmd[i] == ' ') {
+	while((cmd[i] == ' ') || (cmd[i] == '\n')) {
 		cmd[i] = '\0';
 		i--;
 
@@ -1201,18 +838,19 @@ void startRoutine(user u) {
 		i = 0;
 		toomuchwait();
 		if(hellcnt == 0) { 	
-			chval = getchar();
 			++hellcnt;
 		}
-		while((chval = getchar()) != '\n') {
+prev:		while((chval = getchar()) != '\n') {
 			cmd[i] = chval;
 			i++;
 		}
 		cmd[i] = '\0';
+		if(cmd[0] == '\0')
+			goto prev;
 		cmd = cmdLowerCase(cmd);
 		cmd = trim(cmd);
+		//printf("%s\n", cmd);
 		cmd = analyse(cmd, u);
 	}
 	
 }
-

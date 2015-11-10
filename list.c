@@ -1,16 +1,35 @@
+
+/*****************************************************************************
+ *   This file is part of TECHNA.
+ *
+ *  TECHNA is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Foobar is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with TECHNA.  If not, see <http://www.gnu.org/licenses/>.
+*****************************************************************************/
+
+
 # include<stdio.h>
 # include<stdlib.h>
 # include "list.h"
-void init(list *l) {
+void init(list *l) {					//Initializes the list type for contact management module.
 	l->head = l->tail = NULL;
 	l->length = 0;
 
 }
-void initNode(node *n) {
+void initNode(node *n) {				//Initializes node
 	n->next = n->prev = NULL;
 	n->ptr = NULL;
 }
-void insert(list *l, node *n, data *data1, int pos) {
+void insert(list *l, node *n, data *data1, int pos) {	//Inserts new node to list (node means new contact here).
 	if(pos == 0) {
 		l->head = l->tail = n;
 		n->ptr = data1;
@@ -23,14 +42,14 @@ void insert(list *l, node *n, data *data1, int pos) {
 	l->tail = n;
 	(l->length)++;
 }
-void showAll(list *l) {
+void showAll(list *l) {					//Displays all contacts that are previously stored or added
 	node *p = l->head;
 	while(p) {
 		printf("\n%s\n%s\n%s\n\n", p->ptr->name, p->ptr->phone, p->ptr->email);
 		p = p->next;	
 	}
 }
-void storeTotal(list *l) {
+void storeTotal(list *l) {				//Storing whole data inti the file
 	data myData;
 	node *p = l->head;
 	FILE *fp = fopen("DataBase/contact.dat", "w");;
@@ -41,7 +60,7 @@ void storeTotal(list *l) {
 	}
 	fclose(fp);
 }
-void viewContact(char *name, list *l) {
+void viewContact(char *name, list *l) {			//Showing particular contact according to the name given by user
 	node *p = l->head;
 	int cnt =0;
 	while(p) {
@@ -56,7 +75,7 @@ void viewContact(char *name, list *l) {
 		printf("T> Sorry, no contact found\n");	
 	}
 }
-void update(list *l, char *phone) {
+void update(list *l, char *phone) {			//Updates the contact entry
 	node *p = l->head;
 	int cnt =0;
 	while(p) {

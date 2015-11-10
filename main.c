@@ -1,27 +1,33 @@
+
+/*****************************************************************************
+ * Copyright (C) Tushar Sandeep Agey agey.tushar3@gmail.com
+ *
+ * This program(TECHNA) is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+ *****************************************************************************/
+
 #include<stdio.h>
 #include "Techna.h"
-void printmenu() {
-	printf("T> How can I serve you sir?\nT> select the service that you want from me:\n");
-	printf("T> 1)Manage the contacts\n");
-	printf("T> 1)Manage the money\n");
-	/*printf("T> 1)Manage the contacts\n");
-	printf("T> 1)Manage the contacts\n");
-	printf("T> 1)Manage the contacts\n");
-	*/
-	
-}
-int main() {
+int main() {				//Entry point of TECHNA routine
 	user u;
-	//execvp("clear");
-//	execvp("./projcet");
 	printf("\n \t\tTECHNA\n");
 	printf("\n **********************************************************\n");
 	printf("T> Welcome to the world of TECHNA\n");
 	if(isFirstTime(&u)) {
-		printf("T> Wow, first time visit, let me introduce myself, I am a chatbot, having name\n\t\t\t TECHNA.\n And I came in exsistance on 13th September 2015\n"); 
+		printf("T> Wow, first time visit, let me introduce myself, I am a personal assistant\n   program, with name\n\t\t\t TECHNA\n   I came in exsistance on 13th September 2015.\n"); 
 		printf("T> Please tell me about you! So that I can understnd you clearly\n");
 		writeinfo(&u);
-		printf("T> Let me tell you that on next login, you will be asked for login, and its just\n ur name and the passcode will be the value equal to current day + 9;\nConfused? no pooblem, just type help, you will get set of commands with their\n use!\n");
+		printf("T> Let me tell you that on next login, you will be asked for login, and its just\n   ur name and the secrete code will be the value equal to current day + 9;\n   Confused? no problem, just type help, you will get set of commands with their   use!\n");
 		printf("T> Hint: Type help\n");
 	goto jmp;
 	}
@@ -33,8 +39,7 @@ int main() {
 		return(0);
 	}
 jmp:	greet(u, 1);
-	//printmenu();
-	startRoutine(u																);//Biggest real time working function.
+	startRoutine(u);		//Biggest real time working function.
 	closeMe(u);
 	return 0;
 }
