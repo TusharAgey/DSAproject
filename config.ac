@@ -1,0 +1,9 @@
+AC_PREREQ(2.59)
+AC_INIT([project], [1.0], [agey.tushar3@gmail.com])
+AM_INIT_AUTOMAKE([1.9 foreign -Wall])
+AM_PROG_AR
+AC_PROG_CC
+AC_PROG_RANLIB
+AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_FILES([Makefile lib/Makefile src/Makefile])
+AC_OUTPUT
